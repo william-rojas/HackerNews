@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!newsItems"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="newsItems">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title(C)</th>
+      <th>Submitted By</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of newsItems">
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.by }}</td>
+      <td>{{ item.score }}</td>
+    </tr>
+  </tbody>
+</table>

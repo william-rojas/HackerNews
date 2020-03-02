@@ -1,0 +1,48 @@
+<h1 id="tableLabel">Hacker News Challenge</h1>
+
+<p>This component demonstrates fetching data from the hackers news API.</p>
+
+<p *ngIf="!newsApiItems.stories"><em>Loading...</em></p>
+
+<p *ngIf="newsApiItems.stories"><em>{{newsApiItems.message}}</em></p>
+
+
+<div *ngIf="newsApiItems.stories" class="container">
+  <div class="row">
+    <div class="col-2 text-left">
+      <div *ngIf="newsApiItems.pageNumber > 0">
+        <a href="/fetch-data?pageNumber={{ newsApiItems.pageNumber - 1 }}&storyNumber={{newsApiItems.stories[0].id}}&increment=false">&laquo;Previous</a>
+      </div>
+    </div>
+    <div class="col text-center">
+      <p>Showing page {{newsApiItems.pageNumber}}</p>
+    </div>
+    <div class="col-2 text-right">
+      <a href="/fetch-data?pageNumber={{ newsApiItems.pageNumber + 1 }}&storyNumber={{newsApiItems.stories[newsApiItems.stories.length - 1].id}}&increment=true">Next&raquo;</a>
+    </div>
+  </div>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="newsApiItems.stories">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Submitted By</th>
+      <th>Score</th>
+      <th>Kids</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of newsApiItems.stories">
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.by }}</td>
+      <td>{{ item.score }}</td>
+      <td>{{ item.kids?.length }}</td>
+      <!--<td><a href="{{componentName}}/details?{{ item.id }}">Details</a></td>-->
+      <td><a href="/fetch-data-detail?id={{ item.id }}&includeChildren=true">Details</a></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,49 @@
+<h1 id="tableLabel">Hacker News Challenge - Details</h1>
+
+<p>Displayng details for news ID: {{ newsItem.id }}</p>
+
+<p *ngIf="!newsItem"><em>Loading...</em></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">Title</div>
+    <div class="col-9">{{ newsItem.title }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">Submitted By</div>
+    <div class="col-9">{{ newsItem.by }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">Url</div>
+    <div class="col-9"><a  target="_blank" href="{{ newsItem.url }}">{{ newsItem.url }}</a></div>
+  </div>
+  <div class="row">
+    <div class="col-3">Score</div>
+    <div class="col-9">{{ newsItem.score }}</div>
+  </div>
+</div>
+
+<div class="mt-2">
+  <h2>Job, comment, poll, or pollopt</h2>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="newsItem">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Submitted By</th>
+      <th>Text</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of newsItem.kidsItems">
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.by }}</td>
+      <td>{{ item.text }}</td>
+      <td>{{ item.type }}</td>
+    </tr>
+  </tbody>
+</table>
